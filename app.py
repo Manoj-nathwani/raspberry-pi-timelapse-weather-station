@@ -29,10 +29,15 @@ with picamera.PiCamera() as camera:
     camera.capture('image.jpg')
 
 # upload image to s3
-client = boto.connect_s3(os.environ["S3_KEY"], os.environ["S3_SECRET"])
+client = boto.s3.connect_to_region('ap-southeast-1',
+       aws_access_key_id=os.environ["S3_KEY"],
+       aws_secret_access_key=os.environ["S3_SECRET"],
+       calling_format = boto.s3.connection.OrdinaryCallingFormat(),
+       )
+#client = boto.connect_s3(os.environ["S3_KEY"], os.environ["S3_SECRET"])
 bucket = client.get_bucket(os.environ["S3_BUCKET"])
 key = bucket.new_key('image.jpg')
-key.set_contents_from_filename(uploadfile)
+key.set_contents_from_filename('image.jpg')
 key.make_public()
 url = create_url(BUCKET, KEY)
 print "Uploaded image to " + url
