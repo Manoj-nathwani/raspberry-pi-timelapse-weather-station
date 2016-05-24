@@ -22,8 +22,8 @@ else:
     humidity = ''
 
 print 'taking picture'
-timestamp = time.time()).split('.')[0]
-file_name = str(timestamp + '.jpg'
+timestamp = str(time.time()).split('.')[0]
+file_name = timestamp + '.jpg'
 with picamera.PiCamera() as camera:
     camera.resolution = (2592, 1944)
     camera.start_preview()
