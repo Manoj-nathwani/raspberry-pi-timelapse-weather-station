@@ -14,8 +14,8 @@ print 'getting dht11 reading'
 Temperature, Humidity = ''
 result = instance.read()
 if result.is_valid():
-    'Temperature' = result.temperature,
-    'Humidity' = result.humidity
+    temperature = result.temperature,
+    humidity = result.humidity
 
 print 'taking picture'
 file_name = str(time.time()).split('.')[0] + '.jpg'
@@ -33,7 +33,7 @@ connection = boto.s3.connect_to_region(
 )
 bucket = connection.get_bucket(os.environ['S3_BUCKET'])
 key = bucket.new_key(file_name)
-key.set_metadata('Temperature', Temperature)
-key.set_metadata('Humidity', Humidity)
+key.set_metadata('temperature', temperature)
+key.set_metadata('humidity', humidity)
 key.set_contents_from_filename(file_name)
 key.make_public()
