@@ -1,8 +1,10 @@
-import os, time, datetime
+import time, datetime
 
 import RPi.GPIO as GPIO
 import picamera, dht11
 import boto
+
+import settings
 
 print 'initialising dht11'
 GPIO.setwarnings(False)
@@ -30,10 +32,10 @@ with picamera.PiCamera() as camera:
 print 'uploading image to s3'
 connection = boto.s3.connect_to_region(
     'eu-west-1',
-    aws_access_key_id=os.environ['S3_KEY'],
-    aws_secret_access_key=os.environ['S3_SECRET']
+    aws_access_key_id=settings.AWS_KEY,
+    aws_secret_access_key=settings.AWS_SECRET
 )
-bucket = connection.get_bucket(os.environ['S3_BUCKET'])
+bucket = connection.get_bucket(settings.AWS_S3_BUCKET)
 key = bucket.new_key(file_name)
 key.set_metadata('temperature', temperature)
 key.set_metadata('humidity', humidity)
