@@ -11,11 +11,13 @@ GPIO.cleanup()
 instance = dht11.DHT11(pin=14)
 
 print 'getting dht11 reading'
-Temperature, Humidity = ''
 result = instance.read()
 if result.is_valid():
-    temperature = result.temperature,
+    temperature = result.temperature
     humidity = result.humidity
+else:
+    temperature = ''
+    humidity = ''
 
 print 'taking picture'
 file_name = str(time.time()).split('.')[0] + '.jpg'
