@@ -22,11 +22,12 @@ else:
     humidity = ''
 
 print 'taking picture'
-file_name = str(time.time()).split('.')[0] + '.jpg'
+timestamp = time.time()).split('.')[0]
+file_name = str(timestamp + '.jpg'
 with picamera.PiCamera() as camera:
     camera.resolution = (2592, 1944)
     camera.start_preview()
-    time.sleep(2)
+    time.sleep(5)
     camera.capture(file_name)
 
 print 'uploading image to s3'
