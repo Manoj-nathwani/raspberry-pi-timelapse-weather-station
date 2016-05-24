@@ -10,7 +10,7 @@ print 'initialising dht11'
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.cleanup()
-instance = dht11.DHT11(pin=14)
+instance = dht11.DHT11(pin=settings.DHT11_PIN)
 
 print 'getting dht11 reading'
 result = instance.read()
@@ -27,7 +27,7 @@ file_name = timestamp + '.jpg'
 with picamera.PiCamera() as camera:
     camera.resolution = (2592, 1944)
     camera.start_preview()
-    time.sleep(5)
+    time.sleep(5) # plenty of time to focus
     camera.capture(file_name)
 
 print 'uploading image to s3'
@@ -41,4 +41,4 @@ key = bucket.new_key(file_name)
 key.set_metadata('temperature', temperature)
 key.set_metadata('humidity', humidity)
 key.set_contents_from_filename(file_name)
-key.make_public()
+#key.make_public()
