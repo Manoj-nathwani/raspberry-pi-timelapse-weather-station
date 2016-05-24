@@ -14,8 +14,8 @@ print 'getting dht11 reading'
 Temperature, Humidity = ''
 result = instance.read()
 if result.is_valid():
-    'Temperature': result.temperature,
-    'Humidity': result.humidity
+    'Temperature' = result.temperature,
+    'Humidity' = result.humidity
 
 print 'taking picture'
 file_name = str(time.time()).split('.')[0] + '.jpg'
