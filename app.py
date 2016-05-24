@@ -1,4 +1,4 @@
-import time, datetime, json
+import os, time, datetime, json
 
 import RPi.GPIO as GPIO
 import picamera, dht11
