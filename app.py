@@ -43,5 +43,5 @@ key.set_metadata('humidity', humidity)
 key.set_contents_from_filename(file_name)
 #key.make_public()
 
-print 'all done, deleting imae'
+print 'all done, deleting image'
 os.remove(file_name)
