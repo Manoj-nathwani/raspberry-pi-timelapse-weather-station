@@ -25,7 +25,8 @@ print 'taking picture'
 timestamp = str(time.time()).split('.')[0]
 file_name = timestamp + '.jpg'
 with picamera.PiCamera() as camera:
-    time.sleep(10) # plenty of time to focus
+    time.sleep(5) # plenty of time to focus
+    camera.resolution = (2592, 1944)
     camera.capture(file_name)
 
 print 'uploading image to s3'
