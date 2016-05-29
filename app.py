@@ -25,7 +25,6 @@ print 'taking picture'
 timestamp = str(time.time()).split('.')[0]
 file_name = timestamp + '.jpg'
 with picamera.PiCamera() as camera:
-    camera.resolution = (2592, 1944)
     camera.start_preview()
     time.sleep(5) # plenty of time to focus
     camera.capture(file_name)
