@@ -27,6 +27,7 @@ file_name = timestamp + '.jpg'
 with picamera.PiCamera() as camera:
     time.sleep(5) # plenty of time to focus
     camera.resolution = (2592, 1944) # for the pi camera v1.2
+    camera.vflip = True
     camera.capture(file_name)
 
 print 'uploading image to s3'
